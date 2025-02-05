@@ -12,9 +12,5 @@ def MyView(request):
     return render(request, 'home.html', context)
 
 
-def contato(request):
-    return render(request, 'contato.html')
-
-
-def sobre(request):
-    return render(request, 'sobre.html')
+def login(request):
+    return render(request, 'login.html')
