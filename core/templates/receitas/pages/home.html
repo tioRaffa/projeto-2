@@ -2,20 +2,19 @@
 
 <body>
 
-    <header class="main-header-container">
-        
-        <div class="main-header container">
+    {% include "receitas/partials/header_home.html" %}
+    
+    {% include "receitas/partials/search_box.html" %}
+    
 
-            <a href="home.html">
-                <h1>
-                    <i class="fa-solid fa-utensils"></i>
-                    <span>RECEITAS</span>
-                </h1>
-                </a>
-        
+    <main class="main-content-container">
+        <div class="main-content main-content-list container">
+            {% include "receitas/partials/receita.html" %}
+            {% include "receitas/partials/receita.html" %}
+            {% include "receitas/partials/receita.html" %}
         </div>
+    </main>
 
-    </header>
-
+    {% include "receitas/partials/footer.html" %}
 </body>
 </html>
