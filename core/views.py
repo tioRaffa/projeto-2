@@ -9,7 +9,7 @@ def MyView(request):
     context = {
         'nome': 'Rafael'
     }
-    return render(request, 'home.html', context)
+    return render(request, 'receitas/pages/home.html', context)
 
 
 def login(request):
