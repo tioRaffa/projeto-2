@@ -13,4 +13,4 @@ def MyView(request):
 
 
 def login(request):
-    return render(request, 'login.html')
+    return render(request, 'receitas/pages/login.html')
