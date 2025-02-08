@@ -1,5 +1,6 @@
 .helpp
 staticfiles
+mediafiles
 
 # Django #
 *.log
