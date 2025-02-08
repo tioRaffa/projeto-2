@@ -7,6 +7,7 @@ from utils.recipes.factory import make_recipe
 def MyView(request):
     context = {
         'dados': [make_recipe() for _ in range(10)],
+        'is_detail_page': False,
     }
     return render(request, 'receitas/pages/home.html', context)
 
