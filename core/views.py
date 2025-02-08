@@ -1,15 +1,22 @@
 from django.shortcuts import render
+from utils.recipes.factory import make_recipe
 
-from django.template import loader
-from django.http import HttpResponse
 # Create your views here.
 
 
 def MyView(request):
     context = {
-        'nome': 'Rafael'
+        'dados': [make_recipe() for _ in range(10)],
     }
     return render(request, 'receitas/pages/home.html', context)
+
+
+def recipes(request, id):
+    context = {
+        'dado': make_recipe(),
+        'is_datail_page': True,
+    }
+    return render(request, 'receitas/pages/receita_view.html', context)
 
 
 def login(request):

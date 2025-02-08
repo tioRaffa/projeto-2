@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+{% include "receitas/partials/head_home.html" %}
+<title> {% block title %}{% endblock title %}Receitas</title>
+</head>
+
+<body>
+    {% include "receitas/partials/header_home.html" %}
+    {% include "receitas/partials/search_box.html" %}
+    
+
+    <main class="main-content-container">
+        {% block content %}{% endblock content %}
+    </main>
+
+    
+    {% include "receitas/partials/footer.html" %}
+</body>
+</html>

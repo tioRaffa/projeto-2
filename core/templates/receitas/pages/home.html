@@ -1,20 +1,11 @@
-{% include "receitas/partials/head_home.html" %}
+{% extends "global/base.html" %}
 
-<body>
+{% block title %}Home | {% endblock title %}
 
-    {% include "receitas/partials/header_home.html" %}
-    
-    {% include "receitas/partials/search_box.html" %}
-    
-
-    <main class="main-content-container">
-        <div class="main-content main-content-list container">
+{% block content %}
+    <div class="main-content main-content-list container">
+        {% for dado in dados  %}
             {% include "receitas/partials/receita.html" %}
-            {% include "receitas/partials/receita.html" %}
-            {% include "receitas/partials/receita.html" %}
-        </div>
-    </main>
-
-    {% include "receitas/partials/footer.html" %}
-</body>
-</html>
+        {% endfor %}
+    </div>
+{% endblock content %}
