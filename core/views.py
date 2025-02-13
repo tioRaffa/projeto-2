@@ -6,7 +6,7 @@ from .models import RecipesModels
 
 
 def MyView(request):
-    recipes = RecipesModels.objects.all().order_by('-id')
+    recipes = RecipesModels.objects.filter(is_published=True).order_by('-id')
     context = {
         'dados': recipes,
         'is_detail_page': False,
@@ -15,19 +15,23 @@ def MyView(request):
 
 
 def recipes(request, id):
+    recipes = RecipesModels.objects.all().get(id=id)
     context = {
-        'dado': make_recipe(),
+        'dado': recipes,
         'is_datail_page': True,
     }
     return render(request, 'receitas/pages/receita_view.html', context)
 
 
 def category(request, id):
-    receita = RecipesModels.objects.get(id=id)
+    receitas = RecipesModels.objects.filter(
+        id=id, is_published=True).order_by('-id')
     context = {
-        'dado': receita
+        'dados': receitas,
+        'is_category_page': True,
+        'is_detail_page': False,
     }
-    return render(request, 'receitas/pages/receita_view.html', context)
+    return render(request, 'receitas/pages/category.html', context)
 
 
 def login(request):

@@ -17,15 +17,21 @@
     
     
     <div class="recipe-author">
-        
-        <span class="recipe-author-item">
-            <i class="fas fa-user"></i>
-            {% if dado.author.first_name %}
-                {{dado.author.first_name}} {{dado.author.last_name}}
-            {% else %}
-                anonymous user
+        {% if dado.author is not None %}
+            <span class="recipe-author-item">
+                <i class="fas fa-user"></i>
+                    {% if dado.author.first_name %}
+                    {{dado.author.first_name}} {{dado.author.last_name}}
+                {% else %}
+                    anonymous user
+            </span>
             {% endif %}
-        </span>
+        {% else %}
+            <span class="recipe-author-item">
+                <i class="fas fa-user"></i>
+                anonymous user
+            </span>
+        {% endif %}
         
         <span class="recipe-author-item">
             <i class="fas fa-calendar-alt"></i>
