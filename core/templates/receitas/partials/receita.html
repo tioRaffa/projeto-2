@@ -20,7 +20,11 @@
         
         <span class="recipe-author-item">
             <i class="fas fa-user"></i>
-            {{dado.author.first_name}} {{dado.author.last_name}}
+            {% if dado.author.first_name %}
+                {{dado.author.first_name}} {{dado.author.last_name}}
+            {% else %}
+                anonymous user
+            {% endif %}
         </span>
         
         <span class="recipe-author-item">
@@ -29,7 +33,7 @@
         </span>
         
         <span class="recipe-author-item">
-            <a href="/recipes/category/cafe-da-manha/">
+            <a href="{% url "category" dado.category.id %}">
                 <i class="fas fa-layer-group"></i>
                 <span>{{dado.category.name}}</span>
             </a>
