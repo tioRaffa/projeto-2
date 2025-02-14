@@ -82,7 +82,11 @@
 
     {% if is_detail_page is not False %}
         <div class="preparation-steps" style="padding: var(--spacing-gutter-medium);">
-            {{ dado.preparation_steps|linebreaksbr }}
+            {% if preparation_steps_is_html is not False %}
+                {{dado.preparation_steps|safe}}
+            {% else %}
+                {{ dado.preparation_steps|linebreaksbr }}
+            {% endif %}
         </div>
     {% endif %}
 </div>
