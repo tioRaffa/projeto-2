@@ -50,12 +50,16 @@ def login(request):
 
 
 def search(request):
-    search_term = request.GET.get('q')
+    search_term = request.GET.get('q', '').strip()
     
-    if search_term is None:
+    context = {
+        'page_title': f'Search for "{search_term}" | Receitas'
+    }
+    
+    if not search_term:
         raise Http404
     
-    return render(request, 'receitas/pages/search.html')
+    return render(request, 'receitas/pages/search.html', context=context)
 
 
 
