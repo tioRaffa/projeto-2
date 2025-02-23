@@ -34,6 +34,7 @@ class RecipeURLsTest(TestCase):
     
     def test_recipe_search_box_load_template(self):
         
-        response = self.client.get(reverse('search_box'))
+        response = self.client.get(reverse('search_box') + '?q=teste')
         
         self.assertTemplateUsed(response, 'receitas/pages/search.html')
+        ...

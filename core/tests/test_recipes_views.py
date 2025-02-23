@@ -54,10 +54,14 @@ class RecipeViewsTest(RecipeTestBase):
         self.assertEqual(response.status_code, 404)
     
     def test_recipe_detail_page_404(self):
-        response = self.client.get(reverse('recipe_detail_page', kwargs={'id': 10}))
+        response = self.client.get(reverse('recipe_detail_page', kwargs={'id': 101}))
         
         self.assertEqual(response.status_code, 404)
      
+    def test_recipe_search_404_view(self):
+        response = self.client.get(reverse('search_box'))
+        
+        self.assertEqual(response.status_code, 404)
         
     # load template
     def test_recipe_home_template_loads_recipes(self):
