@@ -49,3 +49,7 @@ def login(request):
 
 def custom_404(request, exception):
     return render(request, 'receitas/pages/error_404.html', status=404)
+
+
+def search(request):
+    return render(request, 'receitas/pages/search.html')
