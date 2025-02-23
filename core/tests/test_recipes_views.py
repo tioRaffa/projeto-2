@@ -61,11 +61,26 @@ class RecipeViewsTest(RecipeTestBase):
         
     # load template
     def test_recipe_home_template_loads_recipes(self):
-        response = self.client.get(reverse('recipes_home'))
-        response_recipe = response.context['dados']
+        self.create_recipe()
         
+        response = self.client.get(reverse('recipes_home'))
         content = response.content.decode('utf-8')
         
-        self.assertEqual(response_recipe[0].title, 'Recipe Title')
+        response_recipe = response.context['dados']
         
+        
+        self.assertEqual(response_recipe[0].title, 'Recipe Title')
         ...
+        
+    
+    def  test_category_template_loads(self):
+        tittle = 'Category Test'
+        
+        self.create_recipe(title=tittle)
+        
+        response = self.client.get(reverse('category', args=(4,)))
+        response_cateory = response.context['dados']
+        
+        self.assertIn(response_cateory[0].title, tittle)
+    
+    
