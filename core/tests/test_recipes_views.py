@@ -31,7 +31,7 @@ class RecipeViewsTest(RecipeTestBase):
         
     # 404
     def test_recipe_detail_page_404(self):
-        response = self.client.get(reverse('recipe_detail_page', kwargs={'id': 101}))
+        response = self.client.get(reverse('recipe_detail_page', kwargs={'id': 201}))
         
         self.assertEqual(response.status_code, 404)
      

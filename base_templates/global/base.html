@@ -14,9 +14,10 @@
     {% include "receitas/partials/header_home.html" %}
     {% include "receitas/partials/search_box.html" %}
     
-
+    
     <main class="main-content-container">
         {% block content %}{% endblock content %}
+        {% include "receitas/partials/paginator.html" %}
     </main>
 
     

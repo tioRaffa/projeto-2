@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse, resolve
 from core import views
+from utils.recipes.factory import make_recipe
 
 from .recipe_test_base import RecipeTestBase
 
@@ -25,3 +26,6 @@ class RecipeHomeViewsTest(RecipeTestBase):
         response_recipe = response.context['dados']
         
         self.assertEqual(response_recipe[0].title, 'Recipe Title')
+        
+
+        

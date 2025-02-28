@@ -1,7 +1,7 @@
 <div class="search-container">
     <div class="container" id="gradient">
-        <form class="searchbox" action="{% url 'search_box' %}" method="post" >
-                {% csrf_token %}
+        <form class="searchbox" action="{% url 'search_box' %}" method="GET" >
+            {% csrf_token %}
             <input type="search" placeholder="Search" value="{{ search_term }}" name="q" required/>
             <button type="submit" value="search"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
