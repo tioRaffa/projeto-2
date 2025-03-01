@@ -1,10 +1,11 @@
+import os
+
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from .models import RecipesModels, Category
 from django.http import Http404
 from django.db.models import Q
 from utils.test_pagination.pagination import make_pagination
-
-import os
+from django.contrib import messages
 # Create your views here.
 
 PER_PAGE = int(os.environ.get('PER_PAGE'))
@@ -15,6 +16,7 @@ def MyView(request):
 
     
     page_obj, pagination_range = make_pagination(request, recipes, PER_PAGE, 4)
+    
     
     context = {
         'dados': page_obj,
