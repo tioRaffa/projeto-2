@@ -1,8 +1,10 @@
 {% extends "global/user_base.html" %}
 {% load static %}
+{% load bootstrap4 %}
 
 {% comment %}  LINKS {% endcomment %}
 {% block links %}
+{% bootstrap_css %}
 <link rel="stylesheet" href="{% static 'authors/CSS/styles.css' %}">
 {% endblock links %}
 
@@ -14,20 +16,24 @@
 {% block content %}
 
 <div class="container">
-
+    
     <div class="title">Registro</div>
-
+    <p></p>
+    {% bootstrap_messages %}
+    
     <div class="content">
-        <form action="#">
+        <form action="{% url 'authors:RegisterView' %}" method="POST" autocomplete="off">
+            {% csrf_token %}
+            
             {% include "authors/partials/user_detail.html" %}
-            {% include "authors/partials/gender_detail.html" %}
-
+            
             <div class="button">
-            <input type="submit" value="Register">
+                <input type="submit" value="Register">
             </div>
+            
         </form>
     </div>
 
 </div>
-
+{% bootstrap_javascript jquery='full' %}
 {% endblock content %}

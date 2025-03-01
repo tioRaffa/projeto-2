@@ -1,39 +1,38 @@
 <div class="user-details">
 
+    <!-- Input for Username -->
+    <div class="input-box">
+      <span class="details">Nome de Usuario</span>
+      {{ form.username }}
+    </div>
+    
     <!-- Input for Full Name -->
     <div class="input-box">
       <span class="details">Primeiro Nome</span>
-      <input type="text" placeholder="Digite seu Nome" required>
+      {{ form.first_name }}
     </div>
     
     <!-- Input for Last Name -->
     <div class="input-box">
       <span class="details">Ultimo Nome</span>
-      <input type="text" placeholder="Digite seu Ultimo Nome" required>
-    </div>
-
-    <!-- Input for Username -->
-    <div class="input-box">
-      <span class="details">Nome de Usuario</span>
-      <input type="text" placeholder="Digite seu Nome de Usuario" required>
+      {{ form.last_name }}
     </div>
 
     <!-- Input for Email -->
     <div class="input-box">
       <span class="details">Email</span>
-      <input type="text" placeholder="ex: exemploemail@gmail.com" required>
+      {{ form.email }}
     </div>
-
 
     <!-- Input for Password -->
     <div class="input-box">
       <span class="details">Senha</span>
-      <input type="text" placeholder="Digite sua Senha" required>
+      {{ form.password }}
     </div>
 
     <!-- Input for Confirm Password -->
-    <div class="input-box">
+    <!-- <div class="input-box">
       <span class="details">Confirme sua Senha!</span>
       <input type="text" placeholder="Confire sua Senha" required>
     </div>
-  </div>
+  </div>  -->
