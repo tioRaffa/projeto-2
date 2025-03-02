@@ -26,5 +26,5 @@ def register_view(request):
     return render(request, 'authors/pages/register_view.html', context=context)
 
 
-def create(request):
-    ...
+def login(request):
+    return render(request, 'authors/pages/login.html')
