@@ -1,3 +1,4 @@
+{% load bootstrap4 %}
 <div class="user-details">
 
     <!-- Input for Username -->
@@ -24,15 +25,18 @@
       {{ form.email }}
     </div>
 
+    
     <!-- Input for Password -->
     <div class="input-box">
       <span class="details">Senha</span>
       {{ form.password }}
     </div>
-
+    
     <!-- Input for Confirm Password -->
     <div class="input-box">
-      <span class="details">Confirme sua Senha!</span>
+      <span class="details">Confirme sua Senha</span>
       {{ form.password2 }}
     </div>
+    
+
   </div> 
