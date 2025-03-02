@@ -3,6 +3,8 @@ from . import views
 from django.conf.urls import handler404
 # URL DA APLICACAO
 
+
+
 urlpatterns = [
     path('', views.MyView, name='recipes_home'),
     path('recipes/search/', views.search, name='search_box'),
