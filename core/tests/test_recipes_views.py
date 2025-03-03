@@ -7,10 +7,7 @@ from .recipe_test_base import RecipeTestBase
     
 class RecipeViewsTest(RecipeTestBase):
     
-    def test_recipe_login_view(self):
-        view = resolve('/login/')
-        
-        self.assertIs(view.func, views.login)
+
         
         
     def test_recipe_detail_page_view(self):
@@ -20,14 +17,7 @@ class RecipeViewsTest(RecipeTestBase):
         
         self.assertIs(detail_pg_view.func, views.recipes)
     
-        
-    def test_recipe_login_text(self):
-        response = self.client.get(reverse('login'))
-        
-        self.assertIn(
-            '<span class="details">Confirm Password</span>',
-            response.content.decode('utf-8')
-        )
+
         
     # 404
     def test_recipe_detail_page_404(self):

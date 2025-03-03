@@ -2,11 +2,21 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.contrib import messages
+import re
 
 
+def strong_password(password):
+    regex = re.compile(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$')
+    
+    if not regex.match(password):
+        raise ValidationError('erro', code='invalide')
+
+txt = 'ex: Ab12345678'
 class RegisterForm(forms.ModelForm):
+    
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'input-box', 'placeholder': 'Digite sua Senha', 'required': 'True'}),
+        widget=forms.PasswordInput(attrs={'class': 'input-box', 'placeholder': f'{txt}', 'required': 'True'}),
+        validators=[strong_password]
     )
     password2 = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'input-box', 'placeholder': 'Confirme sua Senha', 'required': 'True'}),
@@ -32,7 +42,6 @@ class RegisterForm(forms.ModelForm):
         password = self.cleaned_data.get('password')
         password2 = self.cleaned_data.get('password2')
         
-        print(password, password2)
         
         if password != password2:
             raise ValidationError('erro')
