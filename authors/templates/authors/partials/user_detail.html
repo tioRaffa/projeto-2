@@ -5,12 +5,22 @@
     <div class="input-box">
       <span class="details">Nome de Usuario</span>
       {{ form.username }}
+      
+      
     </div>
     
     <!-- Input for Full Name -->
     <div class="input-box">
       <span class="details">Primeiro Nome</span>
       {{ form.first_name }}
+      
+      {% if form.first_name.errors %}
+      <div class="error-message">
+        {{ form.first_name.errors.0 }}
+      </div>
+      {% endif %}
+      
+      
     </div>
     
     <!-- Input for Last Name -->
@@ -18,13 +28,13 @@
       <span class="details">Ultimo Nome</span>
       {{ form.last_name }}
     </div>
-
+    
     <!-- Input for Email -->
     <div class="input-box">
       <span class="details">Email</span>
       {{ form.email }}
     </div>
-
+    
     
     <!-- Input for Password -->
     <div class="input-box">
@@ -36,7 +46,14 @@
     <div class="input-box">
       <span class="details">Confirme sua Senha</span>
       {{ form.password2 }}
+      {% if form.password2.errors %}
+            <div class="error-message">
+                {{ form.password2.errors.0 }}
+            </div>
+        {% endif %}
     </div>
     
-
+    
   </div> 
+
+  
