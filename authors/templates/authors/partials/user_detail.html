@@ -33,6 +33,15 @@
     <div class="input-box">
       <span class="details">Email</span>
       {{ form.email }}
+
+      
+      {% if form.email.errors %}
+        <div class="error-message" style="color: red; margin-right: 10px;">
+          {{ form.email.errors.0 }}
+        </div>
+      {% endif %}
+        
+
     </div>
     
     

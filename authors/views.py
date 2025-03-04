@@ -1,6 +1,8 @@
-from django.shortcuts import render
-from .forms import RegisterForm
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from .forms import RegisterForm, LoginForms
 from django.contrib import messages
+import time
 
 
 def register_view(request):
@@ -11,8 +13,8 @@ def register_view(request):
         
         if form.is_valid():
             user = form.save(commit=False)
-            user.set_password(user.password)
-            user.save()
+            # user.set_password(user.password)
+            # user.save()
             
             form = RegisterForm()
             messages.success(request, 'Registro Concluido Com Sucesso')
@@ -31,4 +33,30 @@ def register_view(request):
 
 
 def login(request):
-    return render(request, 'authors/pages/login.html')
+    form = LoginForms()
+    
+    if str(request.method) == 'POST':
+        form = LoginForms(request.POST)
+        
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            
+            user = authenticate(
+                username=username,
+                password=password,
+            )
+            
+            if user is not None:
+                return redirect('recipes_home')
+            
+            else:
+                messages.error(request, 'Erro! Digite a senha novamente')            
+
+    
+    
+    context = {
+        'form': form
+    }
+    
+    return render(request, 'authors/pages/login.html', context=context)

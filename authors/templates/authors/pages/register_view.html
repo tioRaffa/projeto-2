@@ -14,26 +14,26 @@
     
 {% comment %} CONTEUDO {% endcomment %}
 {% block content %}
-
-<div class="container">
     
-    <div class="title">Registro | <a href="{% url 'recipes_home' %}" style="text-decoration: none; color: black;">Home</a></div>
-    <p></p>
-    {% bootstrap_messages %}
-    
-    <div class="content">
-        <form action="{% url 'authors:RegisterView' %}" method="POST" autocomplete="off">
-            {% csrf_token %}
-            
-            {% include "authors/partials/user_detail.html" %}
-            
-            <div class="button">
-                <input type="submit" value="Register">
-            </div>
-            
-        </form>
+    <div class="container">
+        
+        <div class="title">Registro | <a href="{% url 'recipes_home' %}" style="text-decoration: none; color: black;">Home</a></div>
+        <p></p>
+        {% bootstrap_messages %}
+        
+        <div class="content">
+            <form action="{% url 'authors:RegisterView' %}" method="POST" autocomplete="off">
+                {% csrf_token %}
+                
+                {% include "authors/partials/user_detail.html" %}
+                
+                <div class="button">
+                    <input type="submit" value="Register">
+                </div>
+                
+            </form>
+        </div>
+        
     </div>
-
-</div>
 {% bootstrap_javascript jquery='full' %}
 {% endblock content %}

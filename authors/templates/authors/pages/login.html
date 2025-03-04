@@ -1,8 +1,10 @@
 {% extends 'global/user_base.html' %}
 {% load static %}
+{% load bootstrap4 %}
 
 {% block links %}
 <link rel="stylesheet" type="text/css" href="{% static 'authors/CSS/login.css' %}">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 {% endblock links %}
 
 {% block title %}Login | {% endblock title %}
@@ -18,24 +20,34 @@
                     Bem Vindo!
                 </span>
             </div>
-
+            {{ bootsra }}
             <form class="login100-form validate-form" method="POST" autocomplete="off">
                 {% csrf_token %}
-
+                    {% bootstrap_messages %}
+                
                 <!-- USERNAME -->
                 <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
                     <span class="label-input100">Username</span>
-                    <input class="input100" type="text" name="username" placeholder="Enter username">
+                    {{ form.username }}
                     <span class="focus-input100"></span>
                 </div>
 
+                <!-- USERNAME ERROR-->
+                {% if form.username.errors %}
+                    <div class="">
+                        {% for error in form.username.errors %}
+                            <p style="color: red;">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                
                 <!-- SENHA -->
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
                     <span class="label-input100">Password</span>
-                    <input class="input100" type="password" name="pass" placeholder="Enter password">
+                    {{ form.password }}
                     <span class="focus-input100"></span>
                 </div>
-
+                
                 <div class="flex-sb-m w-full p-b-30">
                     <div style="margin-top: 15px;">
                         <a href="{% url 'authors:RegisterView' %}" class="txt1">
@@ -43,18 +55,18 @@
                         </a>
                     </div>
                 </div>
-
+                
                 <div class="container-login100-form-btn" style="margin-top: 5px;">
-                    <button class="login100-form-btn" style="margin-top: 15px;">
+                    <button type="submit" class="login100-form-btn" style="margin-top: 15px;">
                         Login
                     </button>
                 </div>
-
+                
             </form>
         </div>
     </div>
 </div>
-
+{% bootstrap_javascript jquery='full' %}
 {% endblock content %}
 
 
