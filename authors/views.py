@@ -32,7 +32,7 @@ def register_view(request):
     return render(request, 'authors/pages/register_view.html', context=context)
 
 
-def login(request):
+def login_(request):
     form = LoginForms()
     
     if str(request.method) == 'POST':
@@ -48,6 +48,7 @@ def login(request):
             )
             
             if user is not None:
+                login(request, user)
                 return redirect('recipes_home')
             
             else:
