@@ -8,7 +8,6 @@ import time
 
 def register_view(request):
     
-    
     if str(request.method) == 'POST':
         form = RegisterForm(request.POST or None)
         
@@ -77,3 +76,6 @@ def logout_user(request):
     
     logout(request)
     return redirect(reverse('recipes_home'))
+
+def dashboard_user(request):
+    return render(request, 'authors/pages/dashboard.html')

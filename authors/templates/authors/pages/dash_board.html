@@ -1,0 +1,27 @@
+{% extends "global/user_base.html" %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% comment %}  LINKS {% endcomment %}
+{% block links %}
+
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'authors/CSS/styles.css' %}">
+{% endblock links %}
+
+
+{% block title %}Dash Board | {% endblock title %}
+
+    
+{% comment %} CONTEUDO {% endcomment %}
+{% block content %}
+    
+    <div class="main-content center container">
+
+        <h2>Dashboard | {{ user }}</h2>
+
+    </div>
+
+
+{% bootstrap_javascript jquery='full' %}
+{% endblock content %}
