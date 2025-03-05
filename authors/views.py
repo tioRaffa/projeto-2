@@ -1,5 +1,6 @@
-from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, reverse
 from .forms import RegisterForm, LoginForms
 from django.contrib import messages
 import time
@@ -18,6 +19,7 @@ def register_view(request):
             
             form = RegisterForm()
             messages.success(request, 'Registro Concluido Com Sucesso')
+            return redirect('authors:RegisterView')
         
         else:
             messages.error(request, 'Registro Não Concluido')
@@ -42,13 +44,13 @@ def login_(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             
-            user = authenticate(
+            is_athenticate = authenticate(
                 username=username,
                 password=password,
             )
             
-            if user is not None:
-                login(request, user)
+            if is_athenticate is not None:
+                login(request, is_athenticate)
                 return redirect('recipes_home')
             
             else:
@@ -61,3 +63,9 @@ def login_(request):
     }
     
     return render(request, 'authors/pages/login.html', context=context)
+
+
+@login_required(login_url='authors:login', redirect_field_name='next')
+def logout_user(request):
+    logout(request)
+    return redirect(reverse('recipes_home'))

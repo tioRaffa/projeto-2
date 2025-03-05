@@ -23,7 +23,7 @@
             {{ bootsra }}
             <form class="login100-form validate-form" method="POST" autocomplete="off">
                 {% csrf_token %}
-                    {% bootstrap_messages %}
+                {% bootstrap_messages %}
                 
                 <!-- USERNAME -->
                 <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
@@ -56,12 +56,31 @@
                     </div>
                 </div>
                 
-                <div class="container-login100-form-btn" style="margin-top: 5px;">
-                    <button type="submit" class="login100-form-btn" style="margin-top: 15px;">
-                        Login
-                    </button>
-                </div>
-                
+                    <div class="container-login100-form-btn" style="margin-top: 5px;">
+                        <button type="submit" class="login100-form-btn" style="margin-top: 15px;">
+                            Login
+                        </button>
+                    </div>
+                    
+                 <!-- LOGOUT -->
+                {% if request.user.is_authenticated %}
+                    <div style="display: flex; position: relative; left: 180px; top: -70px;">
+
+                        <div class="container-login100-form-btn" style="margin-top: 5px;">
+
+                            <form action="{% url 'authors:logout' %}" method="POST">
+                                {% csrf_token %}
+                                <a href="{% url 'authors:logout' %}" class="login100-form-btn" style="margin-top: 15px; background-color: red;">
+                                    Logout
+                                </a>
+                            </form>
+                            
+                        </div>
+
+                    </div>
+                {% endif %}
+
+                        
             </form>
         </div>
     </div>
