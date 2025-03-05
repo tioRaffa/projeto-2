@@ -43,20 +43,19 @@ def login_(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             
-            user = authenticate(
+            is_authenticated = authenticate(
                 username=username,
                 password=password,
             )
             
-            if user is not None:
-                login(request, user)
-                return redirect('recipes_home')
+            if is_authenticated is not None:
+                login(request, is_authenticated)
+                return redirect(reverse('authors:dashboard'))
             
             else:
                 messages.error(request, 'Erro! Digite a senha novamente')            
+    
 
-    
-    
     context = {
         'form': form
     }
@@ -67,15 +66,16 @@ def login_(request):
 @login_required(login_url='authors:login', redirect_field_name='next')
 def logout_user(request):
     
-    if str(request.method) != 'POST':
-        return redirect(reverse('authors:login'))
+    # if str(request.method) != 'POST':
+    #     return redirect(reverse('authors:login'))
     
-    if request.POST.get('username') != request.user.username:
-        return redirect(reverse('authors:login'))
+    # if request.POST.get('username') != request.user.username:
+    #     return redirect(reverse('authors:login'))
         
     
     logout(request)
     return redirect(reverse('recipes_home'))
 
+@login_required(login_url='authors:login', redirect_field_name='next')
 def dashboard_user(request):
-    return render(request, 'authors/pages/dashboard.html')
+    return render(request, 'authors/pages/dash_board.html')

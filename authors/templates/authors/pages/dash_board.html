@@ -1,12 +1,11 @@
-{% extends "global/user_base.html" %}
+{% extends "global/base.html" %}
 {% load static %}
 {% load bootstrap4 %}
 
 {% comment %}  LINKS {% endcomment %}
 {% block links %}
-
+<link rel="stylesheet" href="{% static 'authors/CSS/styles2.css' %}">
 {% bootstrap_css %}
-<link rel="stylesheet" href="{% static 'authors/CSS/styles.css' %}">
 {% endblock links %}
 
 
@@ -17,9 +16,24 @@
 {% block content %}
     
     <div class="main-content center container">
-
         <h2>Dashboard | {{ user }}</h2>
-
+        {% if request.user.is_authenticated %}
+            <div class="login-message" style="flex-direction: row;">
+                Your are logged in with 
+                {{ request.user.username }}. 
+                Please,
+                click here to
+                
+                <form class="inline-form" action="{% url 'authors:logout' %}" method='POST'>
+                    {% csrf_token %}
+                    <input type="hidden" name="username" value="{{ request.user.username }}">
+                    <a href="{% url 'authors:logout' %}" class="login100-form-btn" style="margin-top: 15px; color: red;">
+                        logout
+                    </a> 
+                    
+                </form> 
+            </div>
+        {% endif %}
     </div>
 
 
