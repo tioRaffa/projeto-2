@@ -44,13 +44,13 @@ def login_(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             
-            is_athenticate = authenticate(
+            user = authenticate(
                 username=username,
                 password=password,
             )
             
-            if is_athenticate is not None:
-                login(request, is_athenticate)
+            if user is not None:
+                login(request, user)
                 return redirect('recipes_home')
             
             else:
@@ -67,5 +67,13 @@ def login_(request):
 
 @login_required(login_url='authors:login', redirect_field_name='next')
 def logout_user(request):
+    
+    if str(request.method) != 'POST':
+        return redirect(reverse('authors:login'))
+    
+    if request.POST.get('username') != request.user.username:
+        return redirect(reverse('authors:login'))
+        
+    
     logout(request)
     return redirect(reverse('recipes_home'))
