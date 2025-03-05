@@ -14,8 +14,8 @@ def register_view(request):
         
         if form.is_valid():
             user = form.save(commit=False)
-            # user.set_password(user.password)
-            # user.save()
+            user.set_password(user.password)
+            user.save()
             
             form = RegisterForm()
             messages.success(request, 'Registro Concluido Com Sucesso')
