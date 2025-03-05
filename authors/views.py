@@ -1,3 +1,4 @@
+from core.models import RecipesModels
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, reverse
@@ -66,16 +67,28 @@ def login_(request):
 @login_required(login_url='authors:login', redirect_field_name='next')
 def logout_user(request):
     
-    # if str(request.method) != 'POST':
-    #     return redirect(reverse('authors:login'))
+    if str(request.method) != 'POST':
+        return redirect(reverse('authors:login'))
     
-    # if request.POST.get('username') != request.user.username:
-    #     return redirect(reverse('authors:login'))
+    if request.POST.get('username') != request.user.username:
+        return redirect(reverse('authors:login'))
         
     
     logout(request)
     return redirect(reverse('recipes_home'))
 
+
 @login_required(login_url='authors:login', redirect_field_name='next')
 def dashboard_user(request):
-    return render(request, 'authors/pages/dash_board.html')
+    
+    recipe = RecipesModels.objects.filter(
+        is_published=False,
+        author=request.user,
+    )
+    
+    context = {
+        'recipes': recipe,
+        'author': request.user
+    }
+    
+    return render(request, 'authors/pages/dash_board.html', context=context)

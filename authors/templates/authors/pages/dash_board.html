@@ -34,8 +34,27 @@
                 </form> 
             </div>
         {% endif %}
-    </div>
+        
+        <!-- LINK || A  || RECEBER O ID PELO A E DIRECIONAR PARA O HTML DE EDICAO -->
+        <div class="authors-dashboard-containers" >
+            <h3>Suas Receitas</h3>
+            <ul>
+                {% for recipe in recipes  %}
+                    <li>
+                        <a href="#">
+                            {{ recipe.title }}
+                        </a>
+                    </li>
+                {% empty %}
+                    <li>
+                        <p>Voce nao tem receitas, {{ author }}. por favor crie uma!</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
 
+    </div>
+    
 
 {% bootstrap_javascript jquery='full' %}
 {% endblock content %}
