@@ -37,12 +37,30 @@
         
         <!-- LINK || A  || RECEBER O ID PELO A E DIRECIONAR PARA O HTML DE EDICAO -->
         <div class="authors-dashboard-containers" >
-            <h3>Suas Receitas</h3>
+            <h3>Suas Receitas Não Publicadas</h3>
             <ul>
-                {% for recipe in recipes  %}
+                {% for recipe in recipes_false  %}
                     <li>
-                        <a href="#">
-                            {{ recipe.title }}
+                        <a href="{% url 'authors:dashboard_edition' recipe.id %}">
+                                {{ recipe.title }} {{ recipe.id }}
+                                
+                        </a>
+                    </li>
+                {% empty %}
+                    <li>
+                        <p>Voce nao tem receitas, {{ author }}. por favor crie uma!</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="authors-dashboard-containers" >
+            <h3>Suas Receitas Publicadas</h3>
+            <ul>
+                {% for recipe in recipes_true  %}
+                    <li>
+                        <a href="{% url 'authors:dashboard_edition' recipe.id %}">
+                                {{ recipe.title }} {{ recipe.id }}
+                                
                         </a>
                     </li>
                 {% empty %}

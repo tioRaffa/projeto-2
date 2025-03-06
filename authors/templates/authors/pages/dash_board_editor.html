@@ -1,0 +1,91 @@
+{% extends "global/base.html" %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% comment %}  LINKS {% endcomment %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'authors/CSS/dash_form.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+{% bootstrap_css %}
+{% endblock links %}
+
+
+{% block title %}Dash Board | {% endblock title %}
+
+    
+{% comment %} CONTEUDO {% endcomment %}
+{% block content %}
+    
+<div class="container_form">
+    <h1>Editar Receita</h1>
+    <form class="form" action="#" method="post" style="margin: 10px;">
+        {% csrf_token %}
+
+        <!-- TITLE -->
+        <div class="form_grupo">
+            <span class="legenda">Title:</span>
+                {{ forms.title }}
+        </div>
+        
+        <!-- PREPARATION TIME -->
+        <div class="form_grupo">
+            <span class="legenda">Preparation Time:</span>
+            
+            <div class="form-group col-md-4" style="position: relative; right: 12px;">
+                {{ forms.preparation_time }}
+            </div>
+        </div>
+        
+        <div class="form_grupo">
+            <span class="legenda">Preparation Time Unit:</span>
+                {{ forms.preparation_time_unit }}
+        </div>
+        
+        <!-- SERVINGS -->
+        <div class="form_grupo">
+            <span class="legenda">Servings:</span>
+            <div class="form-group col-md-4" style="position: relative; right: 12px;">
+                {{ forms.servings }}
+            </div>
+        </div>
+        
+        <div class="form_grupo">
+            <span class="legenda">Servings Unit:</span>
+            {{ forms.servings_unit }}
+        </div>
+        
+        <!-- CATEGORY -->
+        <div class="form_grupo">
+            <span class="legenda">CATEGORY:</span>
+
+            <div class="check-btn">
+                <input type="checkbox" class="form_new_input" id="html5" name="aprender" value="html5">
+                {% for category in categorys  %}
+                    <label for="html5" class="form_label check_label"> <span class="check_new_btn"></span> {{ category.name }}</label>
+                {% endfor %}     
+            </div>
+            
+            <!-- IMAGE -->
+        <div class="form_grupo">
+            <span class="legenda">Image:</span>
+                {{ forms.cover }}
+        </div>
+            
+            <!-- DESCRICAO -->
+            <div class="form_message">
+                <span class="legenda">Descrição:</span>
+                {{ forms.preparation_steps}}
+            </div>
+
+            <!-- CONFIRM -->
+            <div class="submit">
+              <input type="hidden" name="acao" value="enviar">
+              <button type="button" class="btn btn-primary btn-lg btn-block" id="btn">Confirmar</button>
+            
+            </div>
+
+    </form>
+</div>
+ 
+{% bootstrap_javascript jquery='full' %}
+{% endblock content %}
