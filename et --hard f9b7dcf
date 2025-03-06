@@ -1,0 +1,45 @@
+[33m5e044dd[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{0}: reset: moving to HEAD
+[33m5e044dd[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{1}: reset: moving to origin/main
+[33mf9b7dcf[m HEAD@{2}: reset: moving to HEAD
+[33mf9b7dcf[m HEAD@{3}: commit: configurando a dashboard de edicao do usuario
+[33m5e044dd[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{4}: commit: base dashboard
+[33me4426ec[m HEAD@{5}: commit: configurando a interface do admin
+[33medd2c0d[m HEAD@{6}: commit: dashboard base
+[33m7eed6bb[m HEAD@{7}: commit: editando o register_view para colocar criptografia na senha do User
+[33m63d5801[m HEAD@{8}: commit: configurando logout
+[33m1fa0d1b[m HEAD@{9}: commit: configurando o logout
+[33m90d81ab[m HEAD@{10}: commit: forms
+[33m17bc6fe[m HEAD@{11}: commit: configurando formulario de login
+[33m8157c4f[m HEAD@{12}: commit: configurando o forms e colocando criptografia na senha user
+[33m37198af[m HEAD@{13}: commit: salvando o formulario e criando testes
+[33m028a0a5[m HEAD@{14}: commit: validacao de senha no formulario
+[33m990bf67[m HEAD@{15}: commit: configurando se sobreescrevendo os campos no formulario
+[33m128c784[m HEAD@{16}: commit: page login
+[33m0fee7d0[m HEAD@{17}: commit: remove unnecessary comment from test file
+[33me6a2757[m HEAD@{18}: commit: formulario
+[33mf2ebc68[m HEAD@{19}: commit: formulario
+[33maad927c[m HEAD@{20}: commit: variaveis de ambiente
+[33me707f73[m HEAD@{21}: commit: terminando de configurar o paginator
+[33m83e32be[m HEAD@{22}: commit: KARALHO DE PAGINACAOOO
+[33m815a464[m HEAD@{23}: commit: separando os testes
+[33mcb7842b[m HEAD@{24}: commit: pagina do search box
+[33m46c3ee6[m HEAD@{25}: commit: Add search functionality and enforce unique slugs for recipes
+[33mb9c9d6a[m HEAD@{26}: commit: porra de teste
+[33mcd6e6c4[m HEAD@{27}: commit: base test
+[33m4284593[m HEAD@{28}: commit: configurando testes
+[33m3c6629f[m HEAD@{29}: commit: configurando testes
+[33mee55287[m HEAD@{30}: commit: mexendo nas recipes e utilisando o shortcut get_object_or_404
+[33m5a3290c[m HEAD@{31}: commit: criando um htm de category e trabalhando com rotas
+[33m93eda21[m HEAD@{32}: commit: QuerySet
+[33m2665c37[m HEAD@{33}: commit: criacao de models e adicionando no admin
+[33m94c30b6[m HEAD@{34}: commit: templates- heranca, blocos, if, for e mais
+[33mc50156f[m HEAD@{35}: commit: templates- heranca, blocos, if, for e mais
+[33mf78e1a4[m HEAD@{36}: commit: mexendo nos staticfiles
+[33m3eed1f1[m HEAD@{37}: commit: mexendo nos staticfiles
+[33mca2e88d[m HEAD@{38}: commit: parte do html css
+[33m9c04af9[m HEAD@{39}: commit: aula sobre pages e partials
+[33m2645560[m HEAD@{40}: commit: rotas e views
+[33m13c49c7[m HEAD@{41}: commit: aula sobre templates
+[33me6877bc[m HEAD@{42}: commit: launch.json
+[33m61df5c2[m HEAD@{43}: Branch: renamed refs/heads/master to refs/heads/main
+[33m61df5c2[m HEAD@{45}: commit (initial): first commit

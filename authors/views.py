@@ -95,7 +95,6 @@ def dashboard_user(request):
         'recipes_false': recipe_false,
         'recipes_true': recipe_true,
         'author': request.user,
-        'categorys': categorys.name
     }
     
     return render(request, 'authors/pages/dash_board.html', context=context)
@@ -108,13 +107,21 @@ def dashboard_edition(request, id):
     form = AuthorRecipeForm()
     
     
-    
-    
     if str(request.method) == 'POST':
         form = AuthorRecipeForm(request.POST, instance=recipe)
         if form.is_valid():
-            ...
-    
+            recipe = form.save(commit=False)
+            recipe.author = author
+            recipe.preparation_steps_is_html = False
+            recipe.is_published = False
+
+            recipe.save()
+            messages.success(request, 'Alteração concluida com SUCESSO!')
+        else:
+            messages.error(request, 'ERRO, Tente novamente!')
+            form = AuthorRecipeForm()
+        
+        
     context = {
         'recipes': recipe,
         'forms': form,
