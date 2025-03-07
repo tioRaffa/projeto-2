@@ -18,51 +18,65 @@
     <div class="main-content center container">
         <h2>Dashboard | {{ user }}</h2>
         {% if request.user.is_authenticated %}
-            <div class="login-message" style="flex-direction: row;">
-                Your are logged in with 
-                {{ request.user.username }}. 
-                Please,
-                click here to
-                
-                <form class="inline-form" action="{% url 'authors:logout' %}" method='POST'>
-                    {% csrf_token %}
-                    <input type="hidden" name="username" value="{{ request.user.username }}">
-                    <a href="{% url 'authors:logout' %}" class="login100-form-btn" style="margin-top: 15px; color: red;">
-                        logout
-                    </a> 
-                    
-                </form> 
-            </div>
+            {% include 'authors/partials/head_dashboard.html' %}
         {% endif %}
+
+        {% bootstrap_messages %}
         
-        <!-- LINK || A  || RECEBER O ID PELO A E DIRECIONAR PARA O HTML DE EDICAO -->
+        <!-- RECEITAS NAO PUBLICAS -->
         <div class="authors-dashboard-containers" >
             <h3>Suas Receitas Não Publicadas</h3>
             <ul>
                 {% for recipe in recipes_false  %}
+
                     <li>
-                        <a href="{% url 'authors:dashboard_edition' recipe.id %}">
-                                {{ recipe.title }} {{ recipe.id }}
-                                
+                        {{ recipe.title }} / Id: {{ recipe.id }}
+                        -
+                        <!-- EDIT -->
+                        <a href="{% url 'authors:dashboard_edition' recipe.id %}" style="text-decoration: none;" >
+                            <i class="far fa-edit" style="color: #74C0FC;"></i>
                         </a>
+                    
+                        <!-- DELETE -->
+                        <form action="{% url 'authors:dashboard_delete' recipe.id %}" method="POST" style="display: inline-block;">
+                            {% csrf_token %}
+                            <button type="submit" style="background: none; border: none;">
+                                <i class="fa-solid fa-trash" style="color: #db0f0f;"></i>
+                            </button>
+                        </form>
                     </li>
-                {% empty %}
+
+                    <p></p>
+                    {% empty %}
                     <li>
                         <p>Voce nao tem receitas, {{ author }}. por favor crie uma!</p>
                     </li>
-                {% endfor %}
-            </ul>
-        </div>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            
+        <!-- RECEITAS PUBLICAS -->
         <div class="authors-dashboard-containers" >
             <h3>Suas Receitas Publicadas</h3>
             <ul>
                 {% for recipe in recipes_true  %}
-                    <li>
-                        <a href="{% url 'authors:dashboard_edition' recipe.id %}">
-                                {{ recipe.title }} {{ recipe.id }}
-                                
+                <li>
+                    {{ recipe.title }} / Id: {{ recipe.id }}
+                    -
+                    <!-- EDIT -->
+                        <a href="{% url 'authors:dashboard_edition' recipe.id %}" style="text-decoration: none;" >
+                            <i class="far fa-edit" style="color: #74C0FC;"></i>
                         </a>
-                    </li>
+                
+                    <!-- DELETE -->
+                    <form action="{% url 'authors:dashboard_delete' recipe.id %}" method="POST" style="display: inline-block;">
+                        <button type="submit" style="background: none; border: none;">
+                            <i class="fa-solid fa-trash" style="color: #db0f0f;"></i>
+                        </button>
+                    </form>
+                </li>
+                <p></p>
                 {% empty %}
                     <li>
                         <p>Voce nao tem receitas, {{ author }}. por favor crie uma!</p>
@@ -70,7 +84,6 @@
                 {% endfor %}
             </ul>
         </div>
-
     </div>
     
 

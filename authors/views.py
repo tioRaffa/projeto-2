@@ -2,8 +2,9 @@ from core.models import RecipesModels, Category
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from .forms import RegisterForm, LoginForms, AuthorRecipeForm
+from .forms import RegisterForm, LoginForms, AuthorRecipeForm, AuthorCreateRecipe
 from django.contrib import messages
+from django.utils.text import slugify
 import time
 
 
@@ -104,21 +105,32 @@ def dashboard_edition(request, id):
     author = request.user
     recipe = get_object_or_404(RecipesModels, id=id, author=author)
     
-    form = AuthorRecipeForm()
+    
+    
+    form = AuthorRecipeForm(instance=recipe)
     
     
     if str(request.method) == 'POST':
-        form = AuthorRecipeForm(request.POST, instance=recipe)
+        # form = AuthorRecipeForm(data=request.POST, request.FILES, instance=recipe)
+        form = AuthorRecipeForm(
+            data=request.POST or None,
+            files=request.FILES or None,
+            instance=recipe
+        )
         if form.is_valid():
             recipe = form.save(commit=False)
             recipe.author = author
             recipe.preparation_steps_is_html = False
             recipe.is_published = False
+            recipe.category = Category.objects.get(id=recipe.category.id)
 
             recipe.save()
             messages.success(request, 'Alteração concluida com SUCESSO!')
+            return redirect(reverse('authors:dashboard'))
+            
         else:
-            messages.error(request, 'ERRO, Tente novamente!')
+            messages.error(request, f'ERRO, Tente novamente! ')
+            print(form.errors)
             form = AuthorRecipeForm()
         
         
@@ -129,4 +141,43 @@ def dashboard_edition(request, id):
     }
     
     return render(request, 'authors/pages/dash_board_editor.html', context=context)
+
+
+def dashboard_create_recipe(request):
+    form = AuthorCreateRecipe()
     
+    if str(request.method) == 'POST':
+        form = AuthorCreateRecipe(data=request.POST, files=request.FILES)
+        
+        if form.is_valid():
+            recipe: RecipesModels = form.save(commit=False)
+            recipe.author = request.user
+            recipe.preparation_steps_is_html = False
+            recipe.is_published = False
+            recipe.slug = slugify(recipe.title)
+            
+            recipe.save()
+            form = AuthorCreateRecipe()
+            
+            messages.success(request, 'Receita Criada com Sucesso!')
+            return redirect(reverse('authors:CreateRecipeDashboard'))
+            
+        else:
+            messages.error(request, 'Erro! Tente Novamente.')
+            print(form.errors)
+        
+    context = {
+        'forms': form,
+    }    
+    
+    return render(request, 'authors/pages/dash_board_create.html', context=context)
+    
+    
+def dashboard_delete(request, id):
+    recipe = get_object_or_404(RecipesModels, id=id, author=request.user)
+    
+    if str(request.method) == 'POST':
+        recipe.delete()
+        
+        messages.success(request, 'Receita Apagada com Sucesso')
+        return redirect(reverse('authors:dashboard'))

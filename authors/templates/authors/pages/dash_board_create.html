@@ -17,7 +17,7 @@
 {% block content %}
     
 <div class="container_form" style="position: relative; top: -150px;">
-    <h1>Editar Receita</h1>
+    <h1>Criar Receita</h1>
     <form class="form" action="{{ forms_action }}" method="POST" enctype="multipart/form-data" style="margin: 10px;">
         {% csrf_token %}
         
@@ -29,6 +29,13 @@
         <div class="form_grupo">
             <span class="legenda">Title:</span>
                 {{ forms.title }}
+        </div>
+        
+        <!-- CATEGORY -->
+        <div class="form_grupo">
+            <span class="legenda">category:</span>
+                {{ forms.category }}
+                
         </div>
         
         <!-- PREPARATION TIME -->
@@ -81,7 +88,7 @@
             <!-- CONFIRM -->
         <div class="submit" style="margin-top: 10px;">
             <input type="hidden" name="acao" value="enviar">
-            <button type="submit" class="btn btn-lg btn-primary" id="btn">Confirmar</button>
+            <button type="submit" value="button" class="btn btn-lg btn-primary" id="btn">Confirmar</button>
               
         </div>
             

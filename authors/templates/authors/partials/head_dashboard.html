@@ -1,0 +1,24 @@
+<div class="login-message" style="flex-direction: row;">
+    Your are logged in with 
+    {{ request.user.username }}. 
+    Please,
+    click here to
+    <!-- CREATE -->
+    <form class="inline-form" action="{% url 'authors:CreateRecipeDashboard' %}" method='POST'>
+        {% csrf_token %}
+        <input type="hidden" name="username" value="{{ request.user.username }}">
+        <a href="{% url 'authors:CreateRecipeDashboard' %}" class="login100-form-btn" style="margin-top: 15px; color: rgb(10, 148, 24);">
+            create
+        </a> 
+    </form>
+    or
+    <!-- LOGOUT -->
+    <form class="inline-form" action="{% url 'authors:logout' %}" method='POST'>
+        {% csrf_token %}
+        <input type="hidden" name="username" value="{{ request.user.username }}">
+        <a href="{% url 'authors:logout' %}" class="login100-form-btn" style="margin-top: 15px; color: red;">
+            logout
+        </a> 
+    </form> 
+
+</div>
