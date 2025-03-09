@@ -57,8 +57,8 @@ def category(request, id):
     return render(request, 'receitas/pages/category.html', context)
 
 
-def login(request):
-    return render(request, 'receitas/pages/login.html')
+def skull(request):
+    return render(request, 'receitas/pages/skull.html')
 
 
 def search(request):

@@ -10,7 +10,8 @@ urlpatterns = [
     path('recipes/search/', views.search, name='search_box'),
     path('recipes/<int:id>/', views.recipes, name='recipe_detail_page'),
     path('recipes/category/<int:id>/',
-         views.category, name='category')
+         views.category, name='category'),
+    path('skull/', views.skull)
 ]
 
 handler404 = views.custom_404
