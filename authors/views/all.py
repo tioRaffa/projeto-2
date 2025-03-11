@@ -2,7 +2,7 @@ from core.models import RecipesModels, Category
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from .forms import RegisterForm, LoginForms, AuthorRecipeForm, AuthorCreateRecipe
+from authors.forms import RegisterForm, LoginForms, AuthorRecipeForm, AuthorCreateRecipe
 from django.contrib import messages
 from django.utils.text import slugify
 import time
