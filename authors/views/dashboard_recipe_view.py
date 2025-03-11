@@ -5,13 +5,33 @@ from django.views.generic import View
 from core.models import RecipesModels, Category
 
 class DashBoardRecipeEdit(View):
-    def get(self, request, id):
-        author = request.user
-        recipe = get_object_or_404(RecipesModels, id=id, author=author)
-
+    def get_recipe(self, id):
+        if id:
+            author = self.request.user
+            recipe = get_object_or_404(RecipesModels, id=id, author=author)
+        return recipe
+            
+            
+    def render_recipe(self, form, recipe):
+        context = {
+            'recipes': recipe,
+            'forms': form,
+            'categorys': Category.objects.all()
+        }
         
+        return render(self.request, 'authors/pages/dash_board_editor.html', context=context)
+    
+    
+    def get(self, request, id):
+        recipe = self.get_recipe(id)
         form = AuthorRecipeForm(instance=recipe)
         
+        return self.render_recipe(form=form, recipe=recipe)
+        
+        
+    
+    
+    def post(self, request, id):
         if str(request.method) == 'POST':
             form = AuthorRecipeForm(
                 data=request.POST or None,
@@ -35,10 +55,4 @@ class DashBoardRecipeEdit(View):
                 form = AuthorRecipeForm()
             
             
-        context = {
-            'recipes': recipe,
-            'forms': form,
-            'categorys': Category.objects.all()
-        }
-        
-        return render(request, 'authors/pages/dash_board_editor.html', context=context)
+        return self.render_recipe(form=form, recipe=recipe)
