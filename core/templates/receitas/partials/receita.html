@@ -4,7 +4,7 @@
     {% if dado.cover.url is not Null %}
         <div class="recipe-cover">
             <a href="{% url "recipe_detail_page" dado.id %}">
-                <img src="{{dado.cover.url}}" alt="Temporário">
+                <img src="{{dado.cover.url}}" alt="Temporário" style="width: 5000px; height: 300px; object-fit: cover; display: block;">
             </a>
         </div>
     {% endif %}
