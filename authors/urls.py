@@ -12,7 +12,7 @@ urlpatterns = [
     path('logout/', views.logout_user, name='logout'),
     path('dashboard/', views.dashboard_user, name='dashboard'),
     path('dashboard/edition/<int:id>/', views.DashBoardRecipeEdit.as_view(), name='dashboard_edition'),
-    path('create/recipes/', views.dashboard_create_recipe, name='CreateRecipeDashboard'),
-    path('dashboard/delete/<int:id>', views.dashboard_delete, name='dashboard_delete')
+    path('create/recipes/', views.DashBoardCreate.as_view(), name='CreateRecipeDashboard'),
+    path('dashboard/delete/<int:id>', views.DashBoardDelete.as_view(), name='dashboard_delete')
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
