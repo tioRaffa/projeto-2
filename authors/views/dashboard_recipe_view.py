@@ -13,6 +13,36 @@ from django.contrib import messages
 from django.utils.text import slugify
 import time
 
+# @method_decorator(
+#     login_required(
+#         login_url='authors:login',
+#         redirect_field_name='next'
+#     ),
+#     name='dispatch'
+# )
+# class DashBoardUser(View):
+#     def get_recipe_is_published(self):
+#         return RecipesModels.objects.filter(
+#             is_published=True,
+#             author=self.request.user
+#         )
+    
+#     def get_recipe_not_published(self):
+#         return RecipesModels.objects.filter(
+#             is_published=False,
+#             author=self.request.user
+#         )
+        
+#     def render_dashboard(self, recipe_false, recipe_true):
+#         context = {
+#         'recipes_false': recipe_false,
+#         'recipes_true': recipe_true,
+#         'author': request.user,
+#         }
+        # return render(request, 'authors/pages/dash_board.html', context=context)
+
+
+
 
 @method_decorator(
     login_required(
@@ -21,7 +51,7 @@ import time
     ),
     name='dispatch'
 )
-class DashBoardRecipeEdit(View):
+class DashBoardRecipeEdit(View): #  -----------------------------------------------------EDITAR
     def get_recipe(self, id=None):
         if id is not None:
             author = self.request.user
@@ -75,7 +105,14 @@ class DashBoardRecipeEdit(View):
         return self.render_recipe(form=form, recipe=recipe)
     
 
-class DashBoardCreate(View):
+@method_decorator(
+    login_required(
+        login_url='authors:login',
+        redirect_field_name='next',
+    ),
+    name='dispatch'
+)
+class DashBoardCreate(View): # -----------------------------------------------------CRIAR
     def render_page(self, request, form):
         context = {'forms': form}  
         return render(request, 'authors/pages/dash_board_create.html', context)
@@ -98,15 +135,22 @@ class DashBoardCreate(View):
             form = AuthorCreateRecipe()
             
             messages.success(request, 'Receita Criada com Sucesso!')
-            return redirect(reverse('authors:CreateRecipeDashboard'))
+            return redirect(reverse('authors:dashboard'))
 
         messages.error(request, 'Erro! Tente Novamente.')
         print(form.errors)
 
         return self.render_page(request, form)
     
-    
-class DashBoardDelete(View):
+
+@method_decorator(
+    login_required(
+        login_url='authors:login',
+        redirect_field_name='next',
+    ),
+    name='dispatch'
+)
+class DashBoardDelete(View):#  -----------------------------------------------------APAGAR
     def get_recipe(self, request, id):
         return get_object_or_404(RecipesModels, id=id, author=request.user)
 
