@@ -1,5 +1,5 @@
 import os
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from .models import RecipesModels, Category
@@ -101,6 +101,24 @@ class Search(RecipeListViewBase):
         })
         
         return ctx
+    
+
+class RecipeDetail(DetailView):
+    model = RecipesModels
+    template_name = 'receitas/pages/receita_view.html'
+    context_object_name = 'dado'
+    
+   
+    
+    def get_context_data(self, *args, **kwargs):
+        ctx = super().get_context_data(*args, **kwargs)
+        
+        ctx.update({
+            'is_datail_page': True
+        })
+        
+        return ctx
+    
 
 
 def recipes(request, id):

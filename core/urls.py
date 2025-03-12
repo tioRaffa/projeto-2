@@ -8,8 +8,8 @@ from django.conf.urls import handler404
 urlpatterns = [
     path('', views.RecipeListViewBase.as_view(), name='recipes_home'),
     path('recipes/search/', views.Search.as_view(), name='search_box'),
-    path('recipes/<int:id>/', views.recipes, name='recipe_detail_page'),
-    path('recipes/category/<int:id>/',
+    path('recipes/<int:pk>/', views.RecipeDetail.as_view(), name='recipe_detail_page'),
+    path('recipes/category/<int:pk>/',
          views.Category.as_view(), name='category'),
     path('skull/', views.skull)
 ]
