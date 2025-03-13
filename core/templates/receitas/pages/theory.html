@@ -10,5 +10,10 @@
 <h1>teoria</h1>
 
 
+{% for recipe in recipes %}
+    <li>{{ recipe.id }} / {{ recipe.title }} / {{ recipe.author }}</li>
+{% endfor %}
+    
+
 </body>
 </html>

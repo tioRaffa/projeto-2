@@ -81,11 +81,11 @@ class Search(RecipeListViewBase):
         search_term = self.request.GET.get('q', '').strip()
         queryset = queryset.filter(
             Q(
-            Q(title__icontains=search_term) | 
-            Q(category__name__icontains=search_term),
-        ),
-        is_published=True
-        )
+                Q(title__icontains=search_term) | 
+                Q(category__name__icontains=search_term),
+            ),
+            is_published=True
+            )
         
         return queryset
     
