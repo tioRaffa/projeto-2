@@ -7,7 +7,6 @@ from django.http import Http404
 from django.db.models import Q
 from utils.test_pagination.pagination import make_pagination
 from django.contrib import messages
-from django.shortcuts import render
 from django.http import JsonResponse
 # Create your views here.
 
@@ -41,7 +40,6 @@ class RecipeListViewBase(ListView):
                 
         
         return ctx
-    
     
     
 class Category(RecipeListViewBase):
@@ -122,19 +120,13 @@ class RecipeDetail(DetailView):
         
         return ctx
     
-
-
-# def recipes(request, id):
-#     recipes = get_object_or_404(RecipesModels, id=id, is_published=True)
-
-#     context = {
-#         'dado': recipes,
-#         'is_datail_page': True,
-#         'title': f'{recipes.title}'
-#     }
-
-#     return render(request, 'receitas/pages/receita_view.html', context)
-
+    
+def theory(request):
+    recipe = RecipesModels.objects.all()
+    context = {
+        'recipes': recipe
+    }
+    return render(request, 'receitas/pages/theory.html', context=context)
 
 
 def custom_404(request, exception):

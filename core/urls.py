@@ -11,7 +11,8 @@ urlpatterns = [
     path('recipes/<int:pk>/', views.RecipeDetail.as_view(), name='recipe_detail_page'),
     path('recipes/category/<int:pk>/',
          views.Category.as_view(), name='category'),
-    path('skull/', views.skull)
+    path('skull/', views.skull),
+    path('theory/', views.theory, name='theory')
 ]
 
 handler404 = views.custom_404
