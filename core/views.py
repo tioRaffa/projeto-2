@@ -7,6 +7,8 @@ from django.http import Http404
 from django.db.models import Q
 from utils.test_pagination.pagination import make_pagination
 from django.contrib import messages
+from django.shortcuts import render
+from django.http import JsonResponse
 # Create your views here.
 
 PER_PAGE = int(os.environ.get('PER_PAGE'))
@@ -22,6 +24,7 @@ class RecipeListViewBase(ListView):
     def get_queryset(self, *args, **kwargs):
         queryset = super().get_queryset(*args, **kwargs)
         queryset = queryset.filter(is_published=True)
+        queryset = queryset.select_related('author', 'category')
 
         return queryset
         
@@ -38,6 +41,7 @@ class RecipeListViewBase(ListView):
                 
         
         return ctx
+    
     
     
 class Category(RecipeListViewBase):
@@ -107,8 +111,7 @@ class RecipeDetail(DetailView):
     model = RecipesModels
     template_name = 'receitas/pages/receita_view.html'
     context_object_name = 'dado'
-    
-   
+
     
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
@@ -121,16 +124,16 @@ class RecipeDetail(DetailView):
     
 
 
-def recipes(request, id):
-    recipes = get_object_or_404(RecipesModels, id=id, is_published=True)
+# def recipes(request, id):
+#     recipes = get_object_or_404(RecipesModels, id=id, is_published=True)
 
-    context = {
-        'dado': recipes,
-        'is_datail_page': True,
-        'title': f'{recipes.title}'
-    }
+#     context = {
+#         'dado': recipes,
+#         'is_datail_page': True,
+#         'title': f'{recipes.title}'
+#     }
 
-    return render(request, 'receitas/pages/receita_view.html', context)
+#     return render(request, 'receitas/pages/receita_view.html', context)
 
 
 
