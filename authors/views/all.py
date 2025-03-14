@@ -181,3 +181,6 @@ def dashboard_delete(request, id):
         
         messages.success(request, 'Receita Apagada com Sucesso')
         return redirect(reverse('authors:dashboard'))
+    
+def profile(request):
+    return render(request, 'authors/pages/profile.html')
