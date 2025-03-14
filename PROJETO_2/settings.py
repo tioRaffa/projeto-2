@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     "bootstrap4",
     "authors",
     "core",
-    "tag",
 ]
 
 MIDDLEWARE = [
