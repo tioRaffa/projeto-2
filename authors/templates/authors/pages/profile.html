@@ -37,11 +37,11 @@
                             <div class="card-block text-center text-white">
 
                                 <div class="m-b-25">
-                                    <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image">
+                                    <img src="https://pbs.twimg.com/profile_images/1876232952897519616/gzWg8b8N_400x400.jpg" style="height: 100px; width: 100px; border-radius: 40px;" class="img-radius" alt="User-Profile-Image">
                                 </div>
 
-                                <h6 class="f-w-600">Hembo Tingor</h6>
-                                <p>Web Designer</p>
+                                <h6 class="f-w-600">{{ profile.person.first_name }} {{ profile.person.last_name }}</h6>
+                                <p>{{ profile.bio }}</p>
                                 <i class="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
 
                             </div>
@@ -54,7 +54,7 @@
                                 <div class="row">
 
                                     <div class="col-sm-6">
-                                        <p class="m-b-10 f-w-600">Email</p>
+                                        <p class="m-b-10 f-w-600">{{ profile.person.email }}</p>
                                         <h6 class="text-muted f-w-400">rntng@gmail.com</h6>
                                     </div>
 
